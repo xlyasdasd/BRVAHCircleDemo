@@ -1,0 +1,2 @@
+# BRVAHCircleDemo
+基于BRVAH的RecyclerView多布局实现的类似朋友圈Demo

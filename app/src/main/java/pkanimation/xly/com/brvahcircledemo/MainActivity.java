@@ -34,21 +34,27 @@ public class MainActivity extends BaseActivity {
         fetchData(data);
 
     }
-
+    /**
+     * 获取数据操作
+     * @param data
+     */
     private void fetchData(String data) {
         List<DynamicsModel> dynamicsModels = JSON.parseArray(data, DynamicsModel.class);
         onGetData(dynamicsModels);
     }
-
+    /**
+     * 拿到数据的处理
+     * @param dynamicsModelList
+     */
     private void onGetData(List<DynamicsModel> dynamicsModelList) {
 
-        for (int i = 0; i < dynamicsModelList.size(); i++) {
+        for (int i = 0; i < dynamicsModelList.size(); i++) {///遍历所有的数据
             DynamicsModel dynamicsModel = dynamicsModelList.get(i);
-            if (dynamicsModel.getAction() == Constants.COMMENT) { // 图片类型动态区分
-                if (TextUtils.isEmpty(dynamicsModel.getImg_urls())) {
-                    dynamicsModel.setItemType(Constants.COMMENT_NONE_IMG);//没有图片类型
+            if (dynamicsModel.getAction() == Constants.COMMENT) { // 如果是评论类型的数据，要看是否有图片区分一下布局，这是因为后台没给我区分
+                if (TextUtils.isEmpty(dynamicsModel.getImg_urls())) {//如果这个评论没有图片地址
+                    dynamicsModel.setItemType(Constants.COMMENT_NONE_IMG);//自己定义没有图片类型的布局
                 } else {
-                    dynamicsModel.setItemType(Constants.COMMENT_WITH_IMG);//有图片类型
+                    dynamicsModel.setItemType(Constants.COMMENT_WITH_IMG);//自己定义有图片类型的布局
                 }
             } else {//普通动态直接填入后台数据类型
                 dynamicsModel.setItemType(dynamicsModel.getAction());
@@ -58,7 +64,9 @@ public class MainActivity extends BaseActivity {
         adapter.notifyDataSetChanged();
 
     }
-
+    /**
+     * 这是网络数据
+     */
     private String data = "[{\n" +
             "\t\t\"action\": 5,\n" +
             "\t\t\"action_time\": 1506075300,\n" +

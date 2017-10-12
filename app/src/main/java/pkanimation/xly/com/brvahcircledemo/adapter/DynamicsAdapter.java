@@ -36,7 +36,7 @@ public class DynamicsAdapter extends BaseMultiItemQuickAdapter<DynamicsModel, Ba
      *
      * @param data A new list is created out of this one to avoid mutable list
      */
-    public DynamicsAdapter(List<DynamicsModel> data) {
+    public DynamicsAdapter(List<DynamicsModel> data) {//构造函数中需要把所有的布局类型与布局关联起来，漏了会出resource not found error
         super(data);
         addItemType(Constants.SHARE_VIDEO, R.layout.dynamics_share_video);
         addItemType(Constants.SHARE_GAIN, R.layout.dynamics_share_gain);
@@ -54,7 +54,7 @@ public class DynamicsAdapter extends BaseMultiItemQuickAdapter<DynamicsModel, Ba
         String actionTime = DateUtil.getTime(at, FULL_TIME);
         helper.setText(R.id.tvDynamicsDate, formatData);
         switch (helper.getItemViewType()) {
-            case Constants.SHARE_VIDEO:
+            case Constants.SHARE_VIDEO://分享视频的布局，对应了 上面                   ⬆️构造函数填入的布局，下面以此类推，要做的就是填入数据
                 actionTime = mContext.getString(R.string.share_video, actionTime);
                 helper.setText(R.id.tvAction, actionTime);
                 helper.setText(R.id.tvContent, item.getContent());

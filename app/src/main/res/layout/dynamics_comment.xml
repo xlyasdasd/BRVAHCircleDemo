@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingEnd="@dimen/userPage15dp"
+    android:paddingStart="@dimen/userPage15dp"
+    android:paddingTop="@dimen/_20dp">
+
+    <TextView
+        android:id="@+id/tvDynamicsDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:textColor="@color/color_272B3C"
+        android:textSize="@dimen/commonFontSize_13"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/tvDynamicsDate"
+        android:layout_marginTop="@dimen/_9dp"
+        android:textColor="@color/color_9B9FAD"
+        android:textSize="@dimen/commonFontSize_12" />
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvDynamicsDate"
+        android:layout_marginStart="@dimen/userPage10dp"
+        android:layout_marginTop="@dimen/_9dp"
+        android:layout_toEndOf="@id/tvAction"
+        android:textColor="@color/color_9B9FAD"
+        android:textSize="@dimen/commonFontSize_12" />
+
+    <TextView
+        android:id="@+id/tvContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/tvAction"
+        android:layout_marginTop="@dimen/taskMargin20dp"
+        android:textColor="@color/color_272B3C"
+        android:textSize="@dimen/commonFontSize_15" />
+
+    <ImageView
+        android:id="@+id/ivOperation"
+        android:layout_width="@dimen/_20dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/operation"
+        android:src="@mipmap/mine_omitted" />
+
+    <RelativeLayout
+        android:id="@+id/rlCustomView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvContent"
+        android:layout_marginTop="@dimen/userPage10dp"
+        android:background="@color/color_EFEFEF">
+
+        <ImageView
+            android:id="@+id/ivVideo"
+            android:layout_width="@dimen/userPage50dp"
+            android:layout_height="@dimen/userPage50dp"
+            android:scaleType="centerCrop"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/userPage10dp"
+            android:layout_marginStart="@dimen/userPage10dp"
+            android:layout_marginTop="@dimen/userPage10dp"
+            android:contentDescription="@string/video" />
+
+        <TextView
+            android:id="@+id/tvDes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/userPage10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/ivVideo"
+            android:textColor="@color/color_595D71"
+            android:textSize="@dimen/commonFontSize_14" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/vDivider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/defaultDividerHeight"
+        android:layout_below="@id/rlCustomView"
+        android:layout_marginTop="@dimen/_20dp"
+        android:background="@color/f2f2f2" />
+</RelativeLayout>
+

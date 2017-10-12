@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">BRVAHCircleDemo</string>
+    <string name="operation">操作</string>
+    <string name="video">视频</string>
+    <string name="bg">背景</string>
+    <string name="head">师傅头像</string>
+    <string name="gift">送礼</string>
+    <string name="gain_newly">最近成果</string>
+
+    <!-- 动态 end -->
+    <string name="my_dynamic">我的动态</string>
+    <string name="share_video">分享视频&#160;%1$s</string>
+    <string name="dynamic_results">晒成果&#160;%1$s</string>
+    <string name="like_video">点赞该视频&#160;%1$s</string>
+    <string name="dynamic_send_gift">赠送礼物&#160;%1$s</string>
+    <string name="publish_comment">发表评论&#160;%1$s</string>
+    <string name="dynamic_from_master">拜师&#160;%1$s</string>
+    <string name="dynamic_master_cost">花费%1$d元拜师卷</string>
+    <string name="dynamic_master_from">拜“%1$s”为师</string>
+    <string name="dynamic_send_a_gift">您赠送了一个给%1$s</string>
+    <string name="delete_dynamic">删除该动态</string>
+    <!-- 动态 end -->
+</resources>

@@ -1,11 +1,13 @@
 package pkanimation.xly.com.brvahcircledemo.adapter;
 
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import java.util.List;
 
 import pkanimation.xly.com.brvahcircledemo.R;
 import pkanimation.xly.com.brvahcircledemo.constants.Constants;
+import pkanimation.xly.com.brvahcircledemo.divider.DividerLine;
 import pkanimation.xly.com.brvahcircledemo.model.DynamicsModel;
 import pkanimation.xly.com.brvahcircledemo.util.DateUtil;
 import pkanimation.xly.com.brvahcircledemo.util.ImageLoadUtils;
@@ -92,11 +95,6 @@ public class DynamicsAdapter extends BaseMultiItemQuickAdapter<DynamicsModel, Ba
             case Constants.GIFT:
                 actionTime = mContext.getString(R.string.dynamic_send_gift, actionTime);
                 ImageLoadUtils.displayImage(mContext, item.getGift_img(), (ImageView) helper.getView(R.id.ivSendGiftIcon));
-//                StyleBuilder giftSb = new StyleBuilder();
-//                String gNick = mContext.getString(R.string.quotes, item.getTo_uid_nick());
-//                giftSb.addTextStyle(mContext.getString(R.string.dynamic_send_a_gift, item.getGift_name())).commit()
-//                        .addTextStyle(gNick).textColor(mContext.getResources().getColor(R.color.color_4B64FF)).commit();
-//                giftSb.show((TextView) helper.getView(R.id.tvGiftAction));
                 helper.addOnClickListener(R.id.ivOperation);
                 break;
 
@@ -119,13 +117,35 @@ public class DynamicsAdapter extends BaseMultiItemQuickAdapter<DynamicsModel, Ba
                 break;
 
             case COMMENT_WITH_IMG:
+                RecyclerView recyclerView = helper.getView(R.id.rvCommentImg);
+                BaseQuickAdapter<String, BaseViewHolder> imageAdapter;
+                if (recyclerView.getAdapter() != null) { //adapter复用
+                    imageAdapter = (BaseQuickAdapter<String, BaseViewHolder>) recyclerView.getAdapter();
+                } else {
+                    imageAdapter = null;
+                }
+
+                if (imageAdapter == null){
+                    imageAdapter = new BaseQuickAdapter<String, BaseViewHolder>(R.layout.item_comment_img, new ArrayList<String>()) {
+                        @Override
+                        protected void convert(BaseViewHolder helper, String item) {
+                            ImageLoadUtils.displayImage(mContext, item, (ImageView) helper.getView(R.id.ivCommentImg));
+
+                        }
+                    };
+                    GridLayoutManager gridManager = new GridLayoutManager(mContext, 4);
+                    recyclerView.setLayoutManager(gridManager);
+                    DividerLine dividerLine = new DividerLine(mContext);
+                    recyclerView.addItemDecoration(dividerLine);
+                    recyclerView.setAdapter(imageAdapter);
+                }
+                List<String> imgs =imageAdapter.getData();
+                imgs.clear();
                 actionTime = mContext.getString(R.string.publish_comment, actionTime);
                 ImageLoadUtils.displayImage(mContext, item.getImg_url(), (ImageView) helper.getView(R.id.ivVideo));
-                RecyclerView recyclerView = helper.getView(R.id.rvCommentImg);
                 String[] a = item.getImg_urls().split(",");
-                List<String> imgs = new ArrayList<>();
                 Collections.addAll(imgs, a);
-                setCommentImgList(recyclerView, imgs);
+                imageAdapter.notifyDataSetChanged();
                 helper.setText(R.id.tvDes, item.getDes());
                 if (!TextUtils.isEmpty(item.getContent())) {
                     helper.setText(R.id.tvContent, item.getContent());
@@ -159,22 +179,28 @@ public class DynamicsAdapter extends BaseMultiItemQuickAdapter<DynamicsModel, Ba
         helper.addOnClickListener(R.id.ivOperation);
     }
 
-    /**
-     * 设置动态评论图片
-     *
-     * @param recyclerView
-     * @param imgList
-     */
-    private void setCommentImgList(RecyclerView recyclerView, List<String> imgList) {
-        if (imgList != null) {
-            return;
-        }
+//    /**
+//     * 设置动态评论图片
+//     *
+//     * @param recyclerView
+//     * @param imgList
+//     * @param imageAdapter
+//     */
+//    private void setCommentImgList(RecyclerView recyclerView, List<String> imgList, BaseQuickAdapter<String, BaseViewHolder> imageAdapter) {
+//        if (imgList != null) {
+//            return;
+//        }
 //        GridLayoutManager gridManager = new GridLayoutManager(mContext, 4);
 //        recyclerView.setLayoutManager(gridManager);
 //        DividerLine dividerLine = new DividerLine(DividerLine.VERTICAL);
-//        dividerLine.setSize(DipUtil.dipToPixels(9));
+//        dividerLine.setSize(18);
 //        recyclerView.addItemDecoration(dividerLine);
 //        dividerLine.setColor(R.color.white);
-//        recyclerView.setAdapter(adapter);
+//        recyclerView.setAdapter(imageAdapter);
+//    }
+
+    private void initImageAdapter(List<String> imgs, RecyclerView recyclerView, BaseQuickAdapter<String, BaseViewHolder> adapter) {
+
     }
+
 }

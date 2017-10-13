@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.support.annotation.DrawableRes;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -86,4 +87,6 @@ public class ImageLoadUtils {
                 .transform(new SimpleCircleTransform(context)).into(view);
 
     }
+
+
 }
